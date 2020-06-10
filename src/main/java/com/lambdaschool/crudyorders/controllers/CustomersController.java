@@ -28,7 +28,7 @@ public class CustomersController
     }
 
 
-    // http://localhost:2020/customers/customer/7
+    // http://localhost:2020/customers/customer/23
     // http://localhost:2020/customers/customer/77
     @GetMapping(value = "/customer/{id}", produces = {"application/json"})
     public ResponseEntity<?> listCustomersById(@PathVariable long id)
@@ -38,7 +38,7 @@ public class CustomersController
     }
 
     // http://localhost:2020/customers/namelike/mes
-    // http://localhost:2020/customers/namelike/cin
+    // http://localhost:2020/customers/namelike/zin
     @GetMapping(value = "/namelike/{thename}", produces = {"application/json"})
     public ResponseEntity<?> listAllCustomersLikeName(@PathVariable String thename)
     {

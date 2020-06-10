@@ -18,9 +18,9 @@ public class Payments
     @Column(nullable = false)
     private String type;
 
-//    @ManyToMany(mappedBy = "payments")
-//    @JsonIgnoreProperties(value = "payments")
-//    private List<Orders> ordersList = new ArrayList<>();
+    @ManyToMany(mappedBy = "payments")
+    @JsonIgnoreProperties(value = "payments")
+    private List<Orders> ordersList = new ArrayList<>();
 
     public Payments()
     {
@@ -51,15 +51,15 @@ public class Payments
         this.type = type;
     }
 
-//    public List<Orders> getOrdersList()
-//    {
-//        return ordersList;
-//    }
+    public List<Orders> getOrdersList()
+    {
+        return ordersList;
+    }
 
-//    public void setOrdersList(List<Orders> ordersList)
-//    {
-//        this.ordersList = ordersList;
-//    }
+    public void setOrdersList(List<Orders> ordersList)
+    {
+        this.ordersList = ordersList;
+    }
 
     @Override
     public String toString()

@@ -19,7 +19,7 @@ public class Orders
 
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
-    @JsonIgnoreProperties(value = "orders")
+    @JsonIgnoreProperties(value = "ordersList")
     private Customers customers;
 
     private String orderdescription;
@@ -28,7 +28,7 @@ public class Orders
     @JoinTable(name = "orderspayments",
             joinColumns = @JoinColumn(name = "ordnum"),
             inverseJoinColumns = @JoinColumn(name = "paymentid"))
-    @JsonIgnoreProperties(value = "orders")
+    @JsonIgnoreProperties(value = "ordersList")
     private List<Payments> payments = new ArrayList<>();
 
     public Orders()
@@ -103,6 +103,18 @@ public class Orders
         this.payments = payments;
     }
 
+    public void addPayments(Payments payment)
+    {
+        payments.add(payment);
+        payment.getOrdersList()
+                .add(this);
+
+    }
+    //    public List<Payments> addPayments(Payments payment)
+//    {
+//        return payments;
+//    }
+
     @Override
     public String toString()
     {
@@ -115,4 +127,6 @@ public class Orders
                 ", payments=" + payments +
                 '}';
     }
+
+
 }
