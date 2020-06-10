@@ -11,4 +11,13 @@ public interface CustomersService
     Customers findCustomerById(long id);
 
     List<Customers> findByNameLike(String thename);
+
+    // DELETE
+    void delete(long id);
+
+    // POST/PUT
+    Customers save(Customers customers);
+
+    // PATCH
+    Customers update(Customers customers, long id);
 }

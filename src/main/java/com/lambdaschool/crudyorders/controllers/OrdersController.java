@@ -24,4 +24,11 @@ public class OrdersController
         Orders o = ordersService.findOrdersById(id);
         return new ResponseEntity<>(o, HttpStatus.OK);
     }
+
+    // POST
+
+    // PUT
+
+    // DELETE
+
 }

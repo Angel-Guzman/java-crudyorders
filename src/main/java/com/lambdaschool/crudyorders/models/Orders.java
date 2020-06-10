@@ -110,10 +110,6 @@ public class Orders
                 .add(this);
 
     }
-    //    public List<Payments> addPayments(Payments payment)
-//    {
-//        return payments;
-//    }
 
     @Override
     public String toString()
