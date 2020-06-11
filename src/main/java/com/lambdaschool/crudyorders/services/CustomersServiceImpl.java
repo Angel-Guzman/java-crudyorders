@@ -4,6 +4,7 @@ import com.lambdaschool.crudyorders.models.Customers;
 import com.lambdaschool.crudyorders.models.Orders;
 import com.lambdaschool.crudyorders.models.Payments;
 import com.lambdaschool.crudyorders.repositories.CustomersRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,7 @@ public class CustomersServiceImpl implements CustomersService
         return custrepos.findByCustnameContainingIgnoringCase(thename);
     }
 
+    // DELETE
     @Transactional
     @Override
     public void delete(long id)
@@ -53,6 +55,7 @@ public class CustomersServiceImpl implements CustomersService
         }
     }
 
+    // POST/PUT
     @Transactional
     @Override
     public Customers save(Customers customers)
@@ -91,9 +94,47 @@ public class CustomersServiceImpl implements CustomersService
         return custrepos.save(newCustomer);
     }
 
+    // PATCH
+    @Transactional
     @Override
     public Customers update(Customers customers, long id)
     {
-        return null;
+        Customers currentCustomer = custrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(("Customer " + id + " Not Found")));
+
+        if (customers.getCustname() != null)
+        {
+            currentCustomer.setCustname(customers.getCustname());
+        }
+
+        if (customers.getCustcity() != null)
+        {
+            currentCustomer.setCustcity(customers.getCustcity());
+        }
+
+        if (customers.getWorkingarea() != null)
+        {
+            currentCustomer.setWorkingarea(customers.getWorkingarea());
+        }
+
+        if (customers.getCustcountry() != null)
+        {
+            currentCustomer.setCustcountry(customers.getCustcountry());
+        }
+
+        if (customers.getOrders().size() > 0)
+        {
+            currentCustomer.getOrders().clear();
+            for (Orders o : customers.getOrders())
+            {
+                Orders newOrder = new Orders(o.getOrdamount(), o.getAdvanceamount(), currentCustomer, o.getOrderdescription());
+                for (Payments p : o.getPayments())
+                {
+                    newOrder.addPayments(p);
+                }
+                currentCustomer.getOrders().add(newOrder);
+            }
+        }
+        return custrepos.save(currentCustomer);
     }
 }

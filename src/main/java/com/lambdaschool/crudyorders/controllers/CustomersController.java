@@ -74,7 +74,12 @@ public class CustomersController
     }
 
     // PATCH
-
+    @PatchMapping(value = "/customer/{customerid}", consumes = {"application/json"})
+    public ResponseEntity<?> updatePatchCustomer(@RequestBody Customers updatePatchCustomers, @PathVariable long customerid)
+    {
+        customersService.update(updatePatchCustomers, customerid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     // DELETE http://localhost:2020/customers/customer/54
     // deleted 19
     @DeleteMapping("/customer/{custcode}")
