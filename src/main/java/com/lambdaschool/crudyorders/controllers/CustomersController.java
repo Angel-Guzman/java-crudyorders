@@ -61,9 +61,17 @@ public class CustomersController
                 .toUri();
         responseHeaders.setLocation(newCustomerURI);
 
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(newCustomer, responseHeaders, HttpStatus.CREATED);
     }
     // PUT
+    @PutMapping(value = "/customer/{customerid}", consumes = {"application/json"})
+    public ResponseEntity<?> updateCustomer(@Valid @RequestBody Customers updateCustomers, @PathVariable long customerid)
+    {
+        updateCustomers.setCustcode(customerid);
+        customersService.save(updateCustomers);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     // PATCH
 

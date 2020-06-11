@@ -1,7 +1,6 @@
 package com.lambdaschool.crudyorders.controllers;
 
-import com.lambdaschool.crudyorders.models.Agents;
-import com.lambdaschool.crudyorders.models.Customers;
+import com.lambdaschool.crudyorders.models.Agent;
 import com.lambdaschool.crudyorders.services.AgentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,7 @@ public class AgentsController
     @GetMapping(value = "/agent/{id}", produces = {"application/json"})
     public ResponseEntity<?> listAgentsById(@PathVariable long id)
     {
-        Agents a = agentsService.findAgentsById(id);
+        Agent a = agentsService.findAgentsById(id);
         return new ResponseEntity<>(a, HttpStatus.OK);
     }
 }

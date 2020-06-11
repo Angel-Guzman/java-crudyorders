@@ -30,7 +30,7 @@ public class Customers
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false)
     @JsonIgnoreProperties(value = "customers")
-    private Agents agents;
+    private Agent agent;
 
     @OneToMany(mappedBy = "customers", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties(value = "customers")
@@ -40,7 +40,7 @@ public class Customers
     {
     }
 
-    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstandingamt, String phone, Agents agents)
+    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstandingamt, String phone, Agent agent)
     {
         this.custname = custname;
         this.custcity = custcity;
@@ -52,7 +52,7 @@ public class Customers
         this.paymentamt = paymentamt;
         this.outstandingamt = outstandingamt;
         this.phone = phone;
-        this.agents = agents;
+        this.agent = agent;
     }
 
     public long getCustcode()
@@ -165,14 +165,14 @@ public class Customers
         this.phone = phone;
     }
 
-    public Agents getAgents()
+    public Agent getAgent()
     {
-        return agents;
+        return agent;
     }
 
-    public void setAgents(Agents agents)
+    public void setAgent(Agent agent)
     {
-        this.agents = agents;
+        this.agent = agent;
     }
 
     public List<Orders> getOrders()
@@ -200,7 +200,7 @@ public class Customers
                 ", paymentamt=" + paymentamt +
                 ", outstandingamt=" + outstandingamt +
                 ", phone='" + phone + '\'' +
-                ", agents=" + agents +
+                ", agent=" + agent +
                 ", orders=" + orders +
                 '}';
     }

@@ -1,8 +1,8 @@
 package com.lambdaschool.crudyorders.services;
 
-import com.lambdaschool.crudyorders.models.Agents;
+import com.lambdaschool.crudyorders.models.Agent;
 
 public interface AgentsService
 {
-    Agents findAgentsById(long id);
+    Agent findAgentsById(long id);
 }

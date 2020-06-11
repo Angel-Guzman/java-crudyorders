@@ -2,7 +2,7 @@ package com.lambdaschool.crudyorders;
 
 //import com.github.javafaker.Faker;
 
-import com.lambdaschool.crudyorders.models.Agents;
+import com.lambdaschool.crudyorders.models.Agent;
 import com.lambdaschool.crudyorders.models.Customers;
 import com.lambdaschool.crudyorders.models.Orders;
 import com.lambdaschool.crudyorders.models.Payments;
@@ -67,62 +67,62 @@ public class SeedData implements CommandLineRunner
         pay3 = paymentrepos.save(pay3);
         pay4 = paymentrepos.save(pay4);
 
-        Agents a01 = new Agents("Ramasundar",
+        Agent a01 = new Agent("Ramasundar",
                 "Bangalore",
                 0.15,
                 "077-25814763",
                 "");
-        Agents a02 = new Agents("Alex",
+        Agent a02 = new Agent("Alex",
                 "London",
                 0.13,
                 "075-12458969",
                 "");
-        Agents a03 = new Agents("Alford",
+        Agent a03 = new Agent("Alford",
                 "New York",
                 0.12,
                 "044-25874365",
                 "");
-        Agents a04 = new Agents("Ravi",
+        Agent a04 = new Agent("Ravi",
                 "Bangalore",
                 0.15,
                 "077-45625874",
                 "");
-        Agents a05 = new Agents("Santakumar",
+        Agent a05 = new Agent("Santakumar",
                 "Chennai",
                 0.14,
                 "007-22388644",
                 "");
-        Agents a06 = new Agents("Lucida",
+        Agent a06 = new Agent("Lucida",
                 "San Jose",
                 0.12,
                 "044-52981425",
                 "");
-        Agents a07 = new Agents("Anderson",
+        Agent a07 = new Agent("Anderson",
                 "Brisban",
                 0.13,
                 "045-21447739",
                 "");
-        Agents a08 = new Agents("Subbarao",
+        Agent a08 = new Agent("Subbarao",
                 "Bangalore",
                 0.14,
                 "077-12346674",
                 "");
-        Agents a09 = new Agents("Mukesh",
+        Agent a09 = new Agent("Mukesh",
                 "Mumbai",
                 0.11,
                 "029-12358964",
                 "");
-        Agents a10 = new Agents("McDen",
+        Agent a10 = new Agent("McDen",
                 "London",
                 0.15,
                 "078-22255588",
                 "");
-        Agents a11 = new Agents("Ivan",
+        Agent a11 = new Agent("Ivan",
                 "Torento",
                 0.15,
                 "008-22544166",
                 "");
-        Agents a12 = new Agents("Benjamin",
+        Agent a12 = new Agent("Benjamin",
                 "Hampshair",
                 0.11,
                 "008-22536178",

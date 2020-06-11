@@ -1,8 +1,8 @@
 package com.lambdaschool.crudyorders.services;
 
-import com.lambdaschool.crudyorders.models.Agents;
 import com.lambdaschool.crudyorders.models.Customers;
 import com.lambdaschool.crudyorders.models.Orders;
+import com.lambdaschool.crudyorders.models.Payments;
 import com.lambdaschool.crudyorders.repositories.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,11 +58,12 @@ public class CustomersServiceImpl implements CustomersService
     public Customers save(Customers customers)
     {
         Customers newCustomer = new Customers();
-//        if (customers.getCustcode() != 0)
-//        {
-//            custrepos.findById(customers.getCustcode())
-//                    .orElseThrow(() -> new EntityNotFoundException("Customer " + customers.getCustcode() + " Not Found "));
-//        }
+        if (customers.getCustcode() != 0)
+        {
+            custrepos.findById(customers.getCustcode())
+                    .orElseThrow(() -> new EntityNotFoundException("Customer " + customers.getCustcode() + " Not Found "));
+            newCustomer.setCustcode(customers.getCustcode());
+        }
 
         newCustomer.setCustname(customers.getCustname());
         newCustomer.setCustcity(customers.getCustcity());
@@ -74,12 +75,16 @@ public class CustomersServiceImpl implements CustomersService
         newCustomer.setPaymentamt(customers.getPaymentamt());
         newCustomer.setOutstandingamt(customers.getOutstandingamt());
         newCustomer.setPhone(customers.getPhone());
-        newCustomer.setAgents(customers.getAgents());
+        newCustomer.setAgent(customers.getAgent());
 
         newCustomer.getOrders().clear();
         for (Orders o : customers.getOrders())
         {
             Orders newOrder = new Orders(o.getOrdamount(), o.getAdvanceamount(), newCustomer, o.getOrderdescription());
+            for (Payments p : o.getPayments())
+            {
+                newOrder.addPayments(p);
+            }
             newCustomer.getOrders().add(newOrder);
         }
 
