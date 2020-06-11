@@ -1,5 +1,6 @@
 package com.lambdaschool.crudyorders.services;
 
+import com.lambdaschool.crudyorders.models.Agents;
 import com.lambdaschool.crudyorders.models.Customers;
 import com.lambdaschool.crudyorders.models.Orders;
 import com.lambdaschool.crudyorders.repositories.CustomersRepository;
@@ -57,16 +58,23 @@ public class CustomersServiceImpl implements CustomersService
     public Customers save(Customers customers)
     {
         Customers newCustomer = new Customers();
+//        if (customers.getCustcode() != 0)
+//        {
+//            custrepos.findById(customers.getCustcode())
+//                    .orElseThrow(() -> new EntityNotFoundException("Customer " + customers.getCustcode() + " Not Found "));
+//        }
 
-        newCustomer.setCustcity(customers.getCustcity());
         newCustomer.setCustname(customers.getCustname());
+        newCustomer.setCustcity(customers.getCustcity());
+        newCustomer.setWorkingarea(customers.getWorkingarea());
         newCustomer.setCustcountry(customers.getCustcountry());
         newCustomer.setGrade(customers.getGrade());
         newCustomer.setOpeningamt(customers.getOpeningamt());
-        newCustomer.setPaymentamt(customers.getPaymentamt());
-        newCustomer.setPhone(customers.getPhone());
         newCustomer.setReceiveamt(customers.getReceiveamt());
-        newCustomer.setWorkingarea(customers.getWorkingarea());
+        newCustomer.setPaymentamt(customers.getPaymentamt());
+        newCustomer.setOutstandingamt(customers.getOutstandingamt());
+        newCustomer.setPhone(customers.getPhone());
+        newCustomer.setAgents(customers.getAgents());
 
         newCustomer.getOrders().clear();
         for (Orders o : customers.getOrders())

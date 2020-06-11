@@ -56,7 +56,7 @@ public class CustomersController
 
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newCustomerURI = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/custcode")
+                .path("/{custcode}")
                 .buildAndExpand(newCustomer.getCustcode())
                 .toUri();
         responseHeaders.setLocation(newCustomerURI);

@@ -16,20 +16,21 @@ public class Orders
 
     private double ordamount;
     private double advanceamount;
-
-    @ManyToOne
-    @JoinColumn(name = "custcode", nullable = false)
-    @JsonIgnoreProperties(value = "ordersList")
-    private Customers customers;
-
     private String orderdescription;
 
     @ManyToMany()
     @JoinTable(name = "orderspayments",
             joinColumns = @JoinColumn(name = "ordnum"),
             inverseJoinColumns = @JoinColumn(name = "paymentid"))
-    @JsonIgnoreProperties(value = "ordersList")
+    @JsonIgnoreProperties(value = "orders")
     private List<Payments> payments = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "custcode", nullable = false)
+    @JsonIgnoreProperties(value = "orders")
+    private Customers customers;
+
+
 
     public Orders()
     {
@@ -106,7 +107,7 @@ public class Orders
     public void addPayments(Payments payment)
     {
         payments.add(payment);
-        payment.getOrdersList()
+        payment.getOrders()
                 .add(this);
 
     }

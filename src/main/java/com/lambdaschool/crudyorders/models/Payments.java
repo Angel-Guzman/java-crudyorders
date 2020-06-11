@@ -12,15 +12,14 @@ public class Payments
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
     private long paymentid;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String type;
 
     @ManyToMany(mappedBy = "payments")
     @JsonIgnoreProperties(value = "payments")
-    private List<Orders> ordersList = new ArrayList<>();
+    private List<Orders> orders = new ArrayList<>();
 
     public Payments()
     {
@@ -51,14 +50,14 @@ public class Payments
         this.type = type;
     }
 
-    public List<Orders> getOrdersList()
+    public List<Orders> getOrders()
     {
-        return ordersList;
+        return orders;
     }
 
-    public void setOrdersList(List<Orders> ordersList)
+    public void setOrders(List<Orders> orders)
     {
-        this.ordersList = ordersList;
+        this.orders = orders;
     }
 
     @Override
@@ -67,7 +66,7 @@ public class Payments
         return "Payments{" +
                 "paymentid=" + paymentid +
                 ", type='" + type + '\'' +
-//                ", ordersList=" + ordersList +
+                ", orders=" + orders +
                 '}';
     }
 }
